@@ -1,0 +1,33 @@
+{% extends "base_generic.html" %}
+
+{% block title %}Department List{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">Department List</h1>
+        <a href="{% url 'department_add' %}" class="button is-primary mb-4">Add New Department</a>
+        <table class="table is-fullwidth is-striped">
+            <thead>
+                <tr>
+                    <th>Department No</th>
+                    <th>Department Name</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for department in departments %}
+                <tr>
+                    <td>{{ department.dept_no }}</td>
+                    <td>{{ department.dept_name }}</td>
+                    <td>
+                        <a href="{% url 'department_update' department.dept_no %}" class="button is-small is-info">Edit</a>
+                        <a href="{% url 'department_delete' department.dept_no %}" class="button is-small is-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}

@@ -1,0 +1,23 @@
+{% extends "base_generic.html" %}
+
+{% block title %}{{ title }}{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">{{ title }}</h1>
+        <form method="post" class="box">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="field is-grouped">
+                <div class="control">
+                    <button type="submit" class="button is-primary">Save</button>
+                </div>
+                <div class="control">
+                    <a href="{% if title == 'Add Employee' %}{% url 'employee_list' %}{% else %}{% url 'department_list' %}{% endif %}" class="button is-light">Cancel</a>
+                </div>
+            </div>
+        </form>
+    </div>
+</section>
+{% endblock %}

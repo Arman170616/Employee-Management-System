@@ -1,0 +1,39 @@
+{% extends "base_generic.html" %}
+
+{% block title %}Employee List{% endblock %}
+
+{% block content %}
+<section class="section">
+    <div class="container">
+        <h1 class="title">Employee List</h1>
+        <a href="{% url 'employee_add' %}" class="button is-primary">Add New Employee</a>
+        <table class="table is-fullwidth is-striped">
+            <thead>
+                <tr>
+                    <th>Employee No</th>
+                    <th>Name</th>
+                    <th>Gender</th>
+                    <th>Birth Date</th>
+                    <th>Hire Date</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for employee in employees %}
+                <tr>
+                    <td>{{ employee.emp_no }}</td>
+                    <td>{{ employee.first_name }} {{ employee.last_name }}</td>
+                    <td>{{ employee.get_gender_display }}</td>
+                    <td>{{ employee.birth_date }}</td>
+                    <td>{{ employee.hire_date }}</td>
+                    <td>
+                        <a href="{% url 'employee_update' employee.pk %}" class="button is-small is-info">Edit</a>
+                        <a href="{% url 'employee_delete' employee.pk %}" class="button is-small is-danger">Delete</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</section>
+{% endblock %}
